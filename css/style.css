@@ -1,0 +1,65 @@
+html {
+    font-family: 'Boogaloo', cursive;
+}
+
+body {
+    background-color: linear-gradient(rgb(82, 9, 9),0.5),(red,0.5);
+}
+
+h1 {
+    font-size: 35px;
+    line-height: 50px;
+}
+
+h2 {
+    font-size: 25px;
+    line-height:30px;
+    
+}
+h3{
+    font-size: 30px;
+    line-height: 50px;
+
+}
+
+
+
+ul{
+    line-height: 25px;
+}
+
+div.loc {
+    display: inline-block;
+}
+
+#firstandpike {
+    float:left;
+    width: 200px;
+    margin: 30px;
+    border-width: 10px;
+    border-color: black;
+}
+
+#seatac {
+    float:left;
+    width: 200px;
+    margin: 30px;
+}
+
+#seacent {
+    float:left;
+    width: 200px;
+    margin: 30px;
+}
+
+#caphill {
+    float:left;
+    width: 200px;
+    margin: 30px;
+}
+
+#alki {
+    float:left;
+    width: 200px;
+    margin: 30px;
+}
