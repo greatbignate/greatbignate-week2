@@ -30,9 +30,10 @@ var pike = {
     minCust: 23 ,
     maxCust: 65 ,
     avgCookieCust: 6.3 ,
-    cookieData: cookieArr (23,65,6.3),
+    //cookieData: cookieArr (23,65,6.3),
     //cookieData: cookieArr(this.minCust,this.maxCust,this.avgCookieCust),  
     }
+    pike.cookieData = cookieArr(pike.minCust,pike.maxCust,pike.avgCookieCust);
 
 // Input data to HTML 
 pike.render = function(){
@@ -84,9 +85,95 @@ seaTac.render = function(){
     }
     }     
 }
-pike.render();
-seaTac.render();
+var seaCent = {
+    // Define Constants
+    name: 'Pats Salmon Cookies - Seattle Center',
+    minCust: 11,
+    maxCust: 38,
+    avgCookieCust: 3.7,
+    }
+    seaCent.cookieData = cookieArr(seaCent.minCust,seaCent.maxCust,seaCent.avgCookieCust);
 
-// var seaCent = {
-    //     name: 'Pats Salmon Cookies - Seattle Center',
-    // }
+// Input data to HTML 
+seaCent.render = function(){
+
+    var seaCentUlEl = document.getElementById('seacent');
+    for (var i=0 ; i <= hours.length ; i++) {
+
+        if (i<hours.length){
+            var liEl = document.createElement('li');
+            liEl.textContent = hours[i] +': ' +seaCent.cookieData[0][i]+ ' cookies.';
+            seaCentUlEl.appendChild(liEl);
+    } else if (i === hours.length) {
+        liEl.textContent = 'TOTAL: ' +seaCent.cookieData[1]+ ' cookies.';
+        seaCentUlEl.appendChild(liEl);
+    }else{
+        console.log ('You done messed up Seattle Center');
+        break;
+    }
+    }     
+}
+
+var capHill = {
+    // Define Constants
+    name: 'Pats Salmon Cookies - Capitol Hill',
+    minCust: 20,
+    maxCust: 38,
+    avgCookieCust: 2.3,
+    }
+    capHill.cookieData = cookieArr(capHill.minCust,capHill.maxCust,capHill.avgCookieCust);
+
+// Input data to HTML 
+capHill.render = function(){
+
+    var capHillUlEl = document.getElementById('caphill');
+    for (var i=0 ; i <= hours.length ; i++) {
+
+        if (i<hours.length){
+            var liEl = document.createElement('li');
+            liEl.textContent = hours[i] +': ' +capHill.cookieData[0][i]+ ' cookies.';
+            capHillUlEl.appendChild(liEl);
+    } else if (i === hours.length) {
+        liEl.textContent = 'TOTAL: ' +capHill.cookieData[1]+ ' cookies.';
+        capHillUlEl.appendChild(liEl);
+    }else{
+        console.log ('You done messed up Cap Hill');
+        break;
+    }
+    }     
+}
+
+var alki = {
+    // Define Constants
+    name: 'Pats Salmon Cookies - Alki',
+    minCust: 2,
+    maxCust: 11,
+    avgCookieCust: 4.6,
+    }
+    alki.cookieData = cookieArr(alki.minCust,alki.maxCust,alki.avgCookieCust);
+
+// Input data to HTML 
+alki.render = function(){
+
+    var alkiUlEl = document.getElementById('alki');
+    for (var i=0 ; i <= hours.length ; i++) {
+
+        if (i<hours.length){
+            var liEl = document.createElement('li');
+            liEl.textContent = hours[i] +': ' +alki.cookieData[0][i]+ ' cookies.';
+            alkiUlEl.appendChild(liEl);
+    } else if (i === hours.length) {
+        liEl.textContent = 'TOTAL: ' +alki.cookieData[1]+ ' cookies.';
+        alkiUlEl.appendChild(liEl);
+    }else{
+        console.log ('You done messed up Seatac');
+        break;
+    }
+    }     
+}
+
+// Now let's print this bad boy.
+var locations = [pike,seaTac,seaCent,capHill,alki];
+for (var i=0; i<locations.length; i++) {
+    locations[i].render();
+}
