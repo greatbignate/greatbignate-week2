@@ -9,30 +9,6 @@ var hours = ['6:00 am','7:00 am','8:00 am','9:00 am','10:00 am','11:00 am','12:0
 var genRandom = function (a,b) {
     return Math.ceil((b-a)*Math.random())+a;
 }
-var cookieArr = function(a,b,c){
-    for (var i=0 ; i < hours.length ; i++) {
-        if (i === 0) {
-            var custInHour = [genRandom(a,b)];
-            var cookieInHour = [Math.ceil(custInHour[i]*c)];
-            var totalCookie = cookieInHour[i];
-            if ((cookieInHour[i]/20) < 2){
-                var cookieTosser = [2];
-            }else{
-                var cookieTosser = [Math.ceil(cookieInHour[i]/20)];
-            }
-        } else {
-            custInHour.push(genRandom(a,b));
-            cookieInHour.push(Math.ceil(custInHour[i]*c));
-            totalCookie = totalCookie + cookieInHour[i];
-            if ((cookieInHour[i]/20) < 2){
-                cookieTosser.push(2);
-            }else{
-                cookieTosser.push(Math.ceil(cookieInHour[i]/20));
-            }
-        }
-    }
-return [cookieInHour, totalCookie, cookieTosser];
-}
 
 // Establish Contstructor Loc for locations
 function Loc(name, minCust, maxCust, avgCookieCust) {
@@ -40,6 +16,31 @@ function Loc(name, minCust, maxCust, avgCookieCust) {
     this.minCust = minCust;
     this.maxCust = maxCust;
     this.avgCookieCust = avgCookieCust;
+    
+    this.cookieArr = function (){
+        for (var i=0 ; i < hours.length ; i++) {
+            if (i === 0) {
+                var custInHour = [genRandom(this.minCust,this.maxCust)];
+                var cookieInHour = [Math.ceil(custInHour[i]*this.avgCookieCust)];
+                var totalCookie = cookieInHour[i];
+                if ((cookieInHour[i]/20) < 2){
+                    var cookieTosser = [2];
+                }else{
+                    var cookieTosser = [Math.ceil(cookieInHour[i]/20)];
+                }
+            } else {
+                custInHour.push(genRandom(this.minCust,this.maxCust));
+                cookieInHour.push(Math.ceil(custInHour[i]*this.avgCookieCust));
+                totalCookie = totalCookie + cookieInHour[i];
+                if ((cookieInHour[i]/20) < 2){
+                    cookieTosser.push(2);
+                }else{
+                    cookieTosser.push(Math.ceil(cookieInHour[i]/20));
+                }
+            }
+        }
+        return [cookieInHour, totalCookie, cookieTosser];
+    }
     allLocs.push(this);
 }
 
@@ -72,7 +73,7 @@ function makeHeaderRowCookie() {
 }
 
 // Starting work on the table elements for locations
-Loc.prototype.render = function (){
+Loc.prototype.renderCookie = function (){
     //Start Table
     var trEl = document.createElement('tr');
    
@@ -84,62 +85,63 @@ Loc.prototype.render = function (){
     //Now do the rest of the info
     for (var i=0; i<hours.length; i++) {
         tdEl = document.createElement('td');
-        tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[0][i];
+        tdEl.textContent = this.cookieArr()[0][i];
+        //tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[0][i];
         trEl.appendChild(tdEl);
     }
 
     //Final entry should be total
     tdEl = document.createElement('td');
-    tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+    tdEl.textContent = this.cookieArr()[1];
+    //tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
     trEl.appendChild(tdEl);
 
     //Apprehend to table
     cookieTable.appendChild(trEl);
 }
 
-// Footer row Edited out for now
-// function makeFooterRowCookie() {
-//     var trEl = document.createElement('tr');
+function makeFooterRowCookie() {
+    var trEl = document.createElement('tr');
 
-//     // First entry should say "Total"
-//     var tdEl = document.createElement('td');
-//     tdEl.textContent = 'TOTALS';
-//     tdEl.appendChild(trEl);
+    // First entry should say "Total"
+    var tdEl = document.createElement('td');
+    tdEl.textContent = 'TOTALS';
+    tdEl.appendChild(trEl);
 
-//     // Now for the rest of the entries
-//     for (var i=0; i<hours.length; i++) {
-//         tdEl = document.createElement('td');
-//         for (var n=0; n<allLocs.length; n++){
-//             if (n === 0){
-//                 var cookieHourTotal = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[0][i];
-//             } else {
-//                 cookieHourTotal = cookieHourTotal + cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[0][i];
-//             }
-//         }
-//         tdEl.textContent = cookieHourTotal;
-//         trEl.appendChild(tdEl);
-//     }
-//     // Final entry needs to total the total
-//     tdEl = document.createElement('td');
-//     for (var n=0; n<allLocs.length; n++){
-//         if (n === 0){
-//             var cookieTotalTotal = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
-//         } else {
-//             cookieTotalTotal = cookieTotalTotal + cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
-//         }
-//     }
-//     tdEl.textContent = cookieTotaltotal;
-//     trEl.appendChild(tdEl);
-//     cookieTable.appendChild(trEl);    
-// }
+    // Now for the rest of the entries
+    for (var i=0; i<hours.length; i++) {
+        tdEl = document.createElement('td');
+        for (var n=0; n<allLocs.length; n++){
+            if (n === 0){
+                var cookieHourTotal = this.cookieArr()[0][i];
+            } else {
+                cookieHourTotal = cookieHourTotal + this.cookieArr()[0][i];
+            }
+        }
+        tdEl.textContent = cookieHourTotal;
+        trEl.appendChild(tdEl);
+    }
+    // Final entry needs to total the total
+    tdEl = document.createElement('td');
+    for (var n=0; n<allLocs.length; n++){
+        if (n === 0){
+            var cookieTotalTotal = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+        } else {
+            cookieTotalTotal = cookieTotalTotal + cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+        }
+    }
+    tdEl.textContent = cookieTotaltotal;
+    trEl.appendChild(tdEl);
+    cookieTable.appendChild(trEl);    
+}
 
 // Tell it to render
 makeHeaderRowCookie();
-allLocs[0].render();
-allLocs[1].render();
-allLocs[2].render();
-allLocs[3].render();
-allLocs[4].render();
+allLocs[0].renderCookie();
+allLocs[1].renderCookie();
+allLocs[2].renderCookie();
+allLocs[3].renderCookie();
+allLocs[4].renderCookie();
 //makeFooterRowCookie(); footer row edited out for now
 
 //Start on Employee table
@@ -160,7 +162,7 @@ function makeHeaderRowTosser() {
 }
 
 // Starting work on the table elements for locations
-Loc.prototype.render = function (){
+Loc.prototype.renderToss = function (){
     //Start Table
     var trEl = document.createElement('tr');
    
@@ -172,7 +174,8 @@ Loc.prototype.render = function (){
     //Now do the rest of the info
     for (var i=0; i<hours.length; i++) {
         tdEl = document.createElement('td');
-        tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[2][i];
+        tdEl.textContent = this.cookieArr()[2][i];
+        //tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[2][i];
         trEl.appendChild(tdEl);
     }
     //Apprehend to table
@@ -180,8 +183,8 @@ Loc.prototype.render = function (){
 }
 // Tell it to render
 makeHeaderRowTosser();
-allLocs[0].render();
-allLocs[1].render();
-allLocs[2].render();
-allLocs[3].render();
-allLocs[4].render();
+allLocs[0].renderToss();
+allLocs[1].renderToss();
+allLocs[2].renderToss();
+allLocs[3].renderToss();
+allLocs[4].renderToss();
