@@ -1,179 +1,187 @@
 'use strict';
 
 // Define initial variables, arrays, and functions.
+var allLocs = [];
+var cookieTable = document.getElementById('cookies');
+var tosserTable = document.getElementById('employees');
+var hours = ['6:00 am','7:00 am','8:00 am','9:00 am','10:00 am','11:00 am','12:00 pm','1:00 pm','2:00 pm','3:00 pm','4:00 pm','5:00 pm','6:00 pm','7:00 pm'];
 
-var hours = ['6:00 am','7:00 am','8:00 am','9:00 am','10:00 am','11:00 am','12:00 pm','1:00 pm','2:00 pm','3:00 pm','4:00 pm','5:00 pm','6:00 pm','7:00 pm','8:00 pm','placeholder']
 var genRandom = function (a,b) {
     return Math.ceil((b-a)*Math.random())+a;
 }
 var cookieArr = function(a,b,c){
-
     for (var i=0 ; i < hours.length ; i++) {
         if (i === 0) {
             var custInHour = [genRandom(a,b)];
             var cookieInHour = [Math.ceil(custInHour[i]*c)];
             var totalCookie = cookieInHour[i];
+            if ((cookieInHour[i]/20) < 2){
+                var cookieTosser = [2];
+            }else{
+                var cookieTosser = [Math.ceil(cookieInHour[i]/20)];
+            }
         } else {
             custInHour.push(genRandom(a,b));
             cookieInHour.push(Math.ceil(custInHour[i]*c));
             totalCookie = totalCookie + cookieInHour[i];
+            if ((cookieInHour[i]/20) < 2){
+                cookieTosser.push(2);
+            }else{
+                cookieTosser.push(Math.ceil(cookieInHour[i]/20));
+            }
         }
-        //console.log('i is ' +i+ ', cookieInHour is ' +cookieInHour[i]+ ' totalCookie is ' +totalCookie); 
     }
-return [cookieInHour, totalCookie];
-
+return [cookieInHour, totalCookie, cookieTosser];
 }
 
-var pike = {
-    // Define Constants
-    name: 'Pats Salmon Cookies - First and Pike',
-    minCust: 23 ,
-    maxCust: 65 ,
-    avgCookieCust: 6.3 ,
-    //cookieData: cookieArr (23,65,6.3),
-    //cookieData: cookieArr(this.minCust,this.maxCust,this.avgCookieCust),  
-    }
-    pike.cookieData = cookieArr(pike.minCust,pike.maxCust,pike.avgCookieCust);
-
-// Input data to HTML 
-pike.render = function(){
-
-    var pikeUlEl = document.getElementById('firstandpike');
-    for (var i=0 ; i <= hours.length ; i++) {
-
-        if (i<hours.length){
-            var liEl = document.createElement('li');
-            liEl.textContent = hours[i] +': ' +pike.cookieData[0][i]+ ' cookies.';
-            pikeUlEl.appendChild(liEl);
-    } else if (i === hours.length) {
-        liEl.textContent = 'TOTAL: ' +pike.cookieData[1]+ ' cookies.';
-        pikeUlEl.appendChild(liEl);
-    }else{
-        console.log ('You done messed up Pike');
-        break;
-    }
-    }     
+// Establish Contstructor Loc for locations
+function Loc(name, minCust, maxCust, avgCookieCust) {
+    this.name = name;
+    this.minCust = minCust;
+    this.maxCust = maxCust;
+    this.avgCookieCust = avgCookieCust;
+    allLocs.push(this);
 }
 
-var seaTac = {
-    // Define Constants
-    name: 'Pats Salmon Cookies - Seattle-Tacoma Airport',
-    minCust: 3,
-    maxCust: 24,
-    avgCookieCust: 1.2,
-    //cookieData: cookieArr (3,24,1.2),
-    //cookieData: cookieArr(this.minCust,this.maxCust,this.avgCookieCust),  
+// Create loc instances and Input data for locations
+new Loc('First and Pike', 23, 65, 6.3);
+new Loc('SeaTac', 3, 24, 1.2);
+new Loc('Seattle Center', 11, 38, 3.7);
+new Loc('Capitol Hill', 20, 38, 2.3);
+new Loc('Alki', 2, 11, 4.6);
+
+//Header table entries
+function makeHeaderRowCookie() {
+    var trEl = document.createElement('tr');
+    // First entry should say "Locaton"
+    var thEl = document.createElement('th');
+    thEl.textContent = 'Location';
+    trEl.appendChild(thEl);
+    // Now display hours open
+    for (var i=0; i<hours.length; i++) {
+        thEl = document.createElement('th');
+        thEl.textContent = hours[i];
+        trEl.appendChild(thEl);
     }
-    seaTac.cookieData = cookieArr(seaTac.minCust,seaTac.maxCust,seaTac.avgCookieCust);
-
-// Input data to HTML 
-seaTac.render = function(){
-
-    var seaTacUlEl = document.getElementById('seatac');
-    for (var i=0 ; i <= hours.length ; i++) {
-
-        if (i<hours.length){
-            var liEl = document.createElement('li');
-            liEl.textContent = hours[i] +': ' +seaTac.cookieData[0][i]+ ' cookies.';
-            seaTacUlEl.appendChild(liEl);
-    } else if (i === hours.length) {
-        liEl.textContent = 'TOTAL: ' +seaTac.cookieData[1]+ ' cookies.';
-        seaTacUlEl.appendChild(liEl);
-    }else{
-        console.log ('You done messed up Seatac');
-        break;
-    }
-    }     
-}
-var seaCent = {
-    // Define Constants
-    name: 'Pats Salmon Cookies - Seattle Center',
-    minCust: 11,
-    maxCust: 38,
-    avgCookieCust: 3.7,
-    }
-    seaCent.cookieData = cookieArr(seaCent.minCust,seaCent.maxCust,seaCent.avgCookieCust);
-
-// Input data to HTML 
-seaCent.render = function(){
-
-    var seaCentUlEl = document.getElementById('seacent');
-    for (var i=0 ; i <= hours.length ; i++) {
-
-        if (i<hours.length){
-            var liEl = document.createElement('li');
-            liEl.textContent = hours[i] +': ' +seaCent.cookieData[0][i]+ ' cookies.';
-            seaCentUlEl.appendChild(liEl);
-    } else if (i === hours.length) {
-        liEl.textContent = 'TOTAL: ' +seaCent.cookieData[1]+ ' cookies.';
-        seaCentUlEl.appendChild(liEl);
-    }else{
-        console.log ('You done messed up Seattle Center');
-        break;
-    }
-    }     
+    // Final colum should be headered "total"
+    thEl = document.createElement('th');
+    thEl.textContent = 'TOTAL';
+    trEl.appendChild(thEl);
+    // Append to the cookies table
+    cookieTable.appendChild(trEl);
 }
 
-var capHill = {
-    // Define Constants
-    name: 'Pats Salmon Cookies - Capitol Hill',
-    minCust: 20,
-    maxCust: 38,
-    avgCookieCust: 2.3,
+// Starting work on the table elements for locations
+Loc.prototype.render = function (){
+    //Start Table
+    var trEl = document.createElement('tr');
+   
+    //First entry needs to be location name
+    var tdEl = document.createElement('td');
+    tdEl.textContent = this.name;
+    trEl.appendChild(tdEl);
+
+    //Now do the rest of the info
+    for (var i=0; i<hours.length; i++) {
+        tdEl = document.createElement('td');
+        tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[0][i];
+        trEl.appendChild(tdEl);
     }
-    capHill.cookieData = cookieArr(capHill.minCust,capHill.maxCust,capHill.avgCookieCust);
 
-// Input data to HTML 
-capHill.render = function(){
+    //Final entry should be total
+    tdEl = document.createElement('td');
+    tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+    trEl.appendChild(tdEl);
 
-    var capHillUlEl = document.getElementById('caphill');
-    for (var i=0 ; i <= hours.length ; i++) {
-
-        if (i<hours.length){
-            var liEl = document.createElement('li');
-            liEl.textContent = hours[i] +': ' +capHill.cookieData[0][i]+ ' cookies.';
-            capHillUlEl.appendChild(liEl);
-    } else if (i === hours.length) {
-        liEl.textContent = 'TOTAL: ' +capHill.cookieData[1]+ ' cookies.';
-        capHillUlEl.appendChild(liEl);
-    }else{
-        console.log ('You done messed up Cap Hill');
-        break;
-    }
-    }     
+    //Apprehend to table
+    cookieTable.appendChild(trEl);
 }
 
-var alki = {
-    // Define Constants
-    name: 'Pats Salmon Cookies - Alki',
-    minCust: 2,
-    maxCust: 11,
-    avgCookieCust: 4.6,
+// Footer row Edited out for now
+// function makeFooterRowCookie() {
+//     var trEl = document.createElement('tr');
+
+//     // First entry should say "Total"
+//     var tdEl = document.createElement('td');
+//     tdEl.textContent = 'TOTALS';
+//     tdEl.appendChild(trEl);
+
+//     // Now for the rest of the entries
+//     for (var i=0; i<hours.length; i++) {
+//         tdEl = document.createElement('td');
+//         for (var n=0; n<allLocs.length; n++){
+//             if (n === 0){
+//                 var cookieHourTotal = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[0][i];
+//             } else {
+//                 cookieHourTotal = cookieHourTotal + cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[0][i];
+//             }
+//         }
+//         tdEl.textContent = cookieHourTotal;
+//         trEl.appendChild(tdEl);
+//     }
+//     // Final entry needs to total the total
+//     tdEl = document.createElement('td');
+//     for (var n=0; n<allLocs.length; n++){
+//         if (n === 0){
+//             var cookieTotalTotal = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+//         } else {
+//             cookieTotalTotal = cookieTotalTotal + cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+//         }
+//     }
+//     tdEl.textContent = cookieTotaltotal;
+//     trEl.appendChild(tdEl);
+//     cookieTable.appendChild(trEl);    
+// }
+
+// Tell it to render
+makeHeaderRowCookie();
+allLocs[0].render();
+allLocs[1].render();
+allLocs[2].render();
+allLocs[3].render();
+allLocs[4].render();
+//makeFooterRowCookie(); footer row edited out for now
+
+//Start on Employee table
+//Header table entries
+function makeHeaderRowTosser() {
+    var trEl = document.createElement('tr');
+    // First entry should say "Locaton"
+    var thEl = document.createElement('th');
+    thEl.textContent = 'Location';
+    trEl.appendChild(thEl);
+    // Now display hours open
+    for (var i=0; i<hours.length; i++) {
+        thEl = document.createElement('th');
+        thEl.textContent = hours[i];
+        trEl.appendChild(thEl);
     }
-    alki.cookieData = cookieArr(alki.minCust,alki.maxCust,alki.avgCookieCust);
-
-// Input data to HTML 
-alki.render = function(){
-
-    var alkiUlEl = document.getElementById('alki');
-    for (var i=0 ; i <= hours.length ; i++) {
-
-        if (i<hours.length){
-            var liEl = document.createElement('li');
-            liEl.textContent = hours[i] +': ' +alki.cookieData[0][i]+ ' cookies.';
-            alkiUlEl.appendChild(liEl);
-    } else if (i === hours.length) {
-        liEl.textContent = 'TOTAL: ' +alki.cookieData[1]+ ' cookies.';
-        alkiUlEl.appendChild(liEl);
-    }else{
-        console.log ('You done messed up Seatac');
-        break;
-    }
-    }     
+    tosserTable.appendChild(trEl);
 }
 
-// Now let's print this bad boy.
-var locations = [pike,seaTac,seaCent,capHill,alki];
-for (var i=0; i<locations.length; i++) {
-    locations[i].render();
+// Starting work on the table elements for locations
+Loc.prototype.render = function (){
+    //Start Table
+    var trEl = document.createElement('tr');
+   
+    //First entry needs to be location name
+    var tdEl = document.createElement('td');
+    tdEl.textContent = this.name;
+    trEl.appendChild(tdEl);
+
+    //Now do the rest of the info
+    for (var i=0; i<hours.length; i++) {
+        tdEl = document.createElement('td');
+        tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[2][i];
+        trEl.appendChild(tdEl);
+    }
+    //Apprehend to table
+    tosserTable.appendChild(trEl);
 }
+// Tell it to render
+makeHeaderRowTosser();
+allLocs[0].render();
+allLocs[1].render();
+allLocs[2].render();
+allLocs[3].render();
+allLocs[4].render();

@@ -2,29 +2,26 @@ html {
     font-family: 'Boogaloo', cursive;
     font: white;
     text-shadow: 0px 0px 5px black;
+    cursor: url('https://github.com/codefellows/seattle-201d38/blob/master/class-06-dom-objects-domain_modeling/assets/salmon.png'), auto;
 }
 
 h1 {
     font-size: 35px;
     line-height: 50px;
-    font: white;
 }
 
 h2 {
     font-size: 25px;
-    line-height:30px;
-    font: white;    
+    line-height:30px;    
 }
 
 h3{
     font-size: 30px;
     line-height: 50px;
-    font: white;
 }
 
 table {
-    border: 10px solid black;
-    font: white;  
+    border: 10px solid black;  
 }
   
 td {  
