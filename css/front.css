@@ -2,10 +2,7 @@ html {
     font-family: 'Boogaloo', cursive;
     font: white;
     text-shadow: 0px 0px 5px black;
-}
-
-body {
-    background-image: url(img/Bubba-n-Teenie.JPG);
+    cursor: url('https://github.com/codefellows/seattle-201d38/blob/master/class-06-dom-objects-domain_modeling/assets/salmon.png'), auto;
 }
 
 h1 {
