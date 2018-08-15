@@ -106,16 +106,16 @@ function makeFooterRowCookie() {
     // First entry should say "Total"
     var tdEl = document.createElement('td');
     tdEl.textContent = 'TOTALS';
-    tdEl.appendChild(trEl);
+    trEl.appendChild(tdEl);
 
     // Now for the rest of the entries
     for (var i=0; i<hours.length; i++) {
         tdEl = document.createElement('td');
         for (var n=0; n<allLocs.length; n++){
             if (n === 0){
-                var cookieHourTotal = this.cookieArr()[0][i];
+                var cookieHourTotal = allLocs[n].cookieArr()[0][i];
             } else {
-                cookieHourTotal = cookieHourTotal + this.cookieArr()[0][i];
+                cookieHourTotal = cookieHourTotal + allLocs[n].cookieArr()[0][i];
             }
         }
         tdEl.textContent = cookieHourTotal;
@@ -125,12 +125,12 @@ function makeFooterRowCookie() {
     tdEl = document.createElement('td');
     for (var n=0; n<allLocs.length; n++){
         if (n === 0){
-            var cookieTotalTotal = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+            var cookieTotalTotal = allLocs[n].cookieArr()[1];
         } else {
-            cookieTotalTotal = cookieTotalTotal + cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+            cookieTotalTotal = cookieTotalTotal + allLocs[n].cookieArr()[1];
         }
     }
-    tdEl.textContent = cookieTotaltotal;
+    tdEl.textContent = cookieTotalTotal;
     trEl.appendChild(tdEl);
     cookieTable.appendChild(trEl);    
 }
@@ -142,7 +142,7 @@ allLocs[1].renderCookie();
 allLocs[2].renderCookie();
 allLocs[3].renderCookie();
 allLocs[4].renderCookie();
-//makeFooterRowCookie(); footer row edited out for now
+makeFooterRowCookie(); 
 
 //Start on Employee table
 //Header table entries
