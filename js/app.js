@@ -68,7 +68,7 @@ function makeHeaderRowCookie() {
     thEl.textContent = 'TOTAL';
     trEl.appendChild(thEl);
     // Append to the cookies table
-    cookieTable.appendChild(trEl)
+    cookieTable.appendChild(trEl);
 }
 
 // Starting work on the table elements for locations

@@ -4,27 +4,27 @@ html {
     text-shadow: 0px 0px 5px black;
 }
 
+body {
+    background-image: url(img/Bubba-n-Teenie.JPG);
+}
+
 h1 {
     font-size: 35px;
     line-height: 50px;
-    font: white;
 }
 
 h2 {
     font-size: 25px;
-    line-height:30px;
-    font: white;    
+    line-height:30px;    
 }
 
 h3{
     font-size: 30px;
     line-height: 50px;
-    font: white;
 }
 
 table {
-    border: 10px solid black;
-    font: white;  
+    border: 10px solid black;  
 }
   
 td {  
