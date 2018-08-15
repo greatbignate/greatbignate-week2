@@ -56,17 +56,17 @@ function makeHeaderRowCookie() {
     // First entry should say "Locaton"
     var thEl = document.createElement('th');
     thEl.textContent = 'Location';
-    thEl.appendChild(trEl);
+    trEl.appendChild(thEl);
     // Now display hours open
     for (var i=0; i<hours.length; i++) {
         thEl = document.createElement('th');
         thEl.textContent = hours[i];
-        thEl.appendChild(trEl);
+        trEl.appendChild(thEl);
     }
     // Final colum should be headered "total"
     thEl = document.createElement('th');
     thEl.textContent = 'TOTAL';
-    thEl.appendChild(trEl);
+    trEl.appendChild(thEl);
     // Append to the cookies table
     cookieTable.appendChild(trEl)
 }
@@ -97,8 +97,89 @@ Loc.prototype.render = function (){
     cookieTable.appendChild(trEl);
 }
 
+// Footer row Edited out for now
+// function makeFooterRowCookie() {
+//     var trEl = document.createElement('tr');
+
+//     // First entry should say "Total"
+//     var tdEl = document.createElement('td');
+//     tdEl.textContent = 'TOTALS';
+//     tdEl.appendChild(trEl);
+
+//     // Now for the rest of the entries
+//     for (var i=0; i<hours.length; i++) {
+//         tdEl = document.createElement('td');
+//         for (var n=0; n<allLocs.length; n++){
+//             if (n === 0){
+//                 var cookieHourTotal = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[0][i];
+//             } else {
+//                 cookieHourTotal = cookieHourTotal + cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[0][i];
+//             }
+//         }
+//         tdEl.textContent = cookieHourTotal;
+//         trEl.appendChild(tdEl);
+//     }
+//     // Final entry needs to total the total
+//     tdEl = document.createElement('td');
+//     for (var n=0; n<allLocs.length; n++){
+//         if (n === 0){
+//             var cookieTotalTotal = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+//         } else {
+//             cookieTotalTotal = cookieTotalTotal + cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[1];
+//         }
+//     }
+//     tdEl.textContent = cookieTotaltotal;
+//     trEl.appendChild(tdEl);
+//     cookieTable.appendChild(trEl);    
+// }
+
 // Tell it to render
 makeHeaderRowCookie();
+allLocs[0].render();
+allLocs[1].render();
+allLocs[2].render();
+allLocs[3].render();
+allLocs[4].render();
+//makeFooterRowCookie(); footer row edited out for now
+
+//Start on Employee table
+//Header table entries
+function makeHeaderRowTosser() {
+    var trEl = document.createElement('tr');
+    // First entry should say "Locaton"
+    var thEl = document.createElement('th');
+    thEl.textContent = 'Location';
+    trEl.appendChild(thEl);
+    // Now display hours open
+    for (var i=0; i<hours.length; i++) {
+        thEl = document.createElement('th');
+        thEl.textContent = hours[i];
+        trEl.appendChild(thEl);
+    }
+    tosserTable.appendChild(trEl);
+}
+
+// Starting work on the table elements for locations
+Loc.prototype.render = function (){
+    //Start Table
+    var trEl = document.createElement('tr');
+   
+    //First entry needs to be location name
+    var tdEl = document.createElement('td');
+    tdEl.textContent = this.name;
+    trEl.appendChild(tdEl);
+
+    //Now do the rest of the info
+    for (var i=0; i<hours.length; i++) {
+        tdEl = document.createElement('td');
+        tdEl.textContent = cookieArr(this.minCust,this.maxCust,this.avgCookieCust)[2][i];
+        trEl.appendChild(tdEl);
+    }
+    //Apprehend to table
+    tosserTable.appendChild(trEl);
+}
+// Tell it to render
+makeHeaderRowTosser();
 allLocs[0].render();
 allLocs[1].render();
 allLocs[2].render();

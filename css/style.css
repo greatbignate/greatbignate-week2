@@ -17,42 +17,18 @@ h3{
     line-height: 50px;
 }
 
-ul{
-    line-height: 25px;
+table {
+    border: 10px solid black;  
 }
-
-div.loc {
-    display: inline-block;
-}
-
-#firstandpike {
-    float:left;
-    width: 200px;
-    margin: 30px;
-    border-width: 10px;
-    border-color: black;
-}
-
-#seatac {
-    float:left;
-    width: 200px;
-    margin: 30px;
-}
-
-#seacent {
-    float:left;
-    width: 200px;
-    margin: 30px;
-}
-
-#caphill {
-    float:left;
-    width: 200px;
-    margin: 30px;
-}
-
-#alki {
-    float:left;
-    width: 200px;
-    margin: 30px;
+  
+td {  
+    padding: 10px;  
+    border-radius: 15px;  
+    border: 1px solid black;  
+    background: white;  
+}  
+  
+th {  
+    background-color: navy;  
+    color: white;  
 }
