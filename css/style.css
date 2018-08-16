@@ -1,5 +1,5 @@
 html {
-    background: url(../img/bubbantino.jpg) no-repeat center center fixed;
+    background: chocolate;
     -webkit-background-size: cover;
     -moz-background-size:cover;
     -o-background-size: cover;
@@ -9,22 +9,48 @@ html {
     text-shadow: 0px 0px 10px black;
 }
 
-h1 {
-    font-size: 35px;
-    line-height: 50px;
-    font: white;
+#behindheader {
+    height: 100px;
+    margin: 10px;
+    border-bottom: 5px;
+    padding: 10px;
+
 }
 
-h2 {
-    font-size: 25px;
-    line-height:30px;
-    font: white;    
+header {
+    border-bottom: 5px solid black;
+    text-align: center;
+    position: fixed;
+    background-image: url(../img/fish.jpg);
+    background-size: contain;
+    width: 100%;
+    height: 100px;
 }
 
-h3{
-    font-size: 30px;
-    line-height: 50px;
-    font: white;
+h1 header {
+    text-alig
+}
+
+
+#upper {
+    /* margin: 10px solid red;
+    border: 3px solid blue;
+    padding: 10px solid green; */
+    display: inline;
+}
+
+.about {
+    font-family: 'Times New Roman', Times, sans-serif;
+    margin: 10px solid red;
+    border: 3px solid blue;
+    padding: 10px solid green;
+}
+
+.stores {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 10px solid red;
+    border: 3px solid blue;
+    padding: 10px solid green;
 }
 
 table {
@@ -42,4 +68,21 @@ td {
 th {  
     background-color: navy;  
     color: white;  
+}
+
+#family {
+    font-style: italic;
+    margin: 10px solid red;
+    border: 3px solid blue;
+    padding: 10px solid green;
+    background-image: url(../img/family.jpg);
+    background-size: contain;
+}
+
+#merch {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    margin: 10px solid red;
+    border: 3px solid blue;
+    padding: 10px solid green;
 }
