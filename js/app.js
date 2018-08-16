@@ -14,7 +14,7 @@ var cookieArray = function (a,b,c) {
         if (i === 0) {
             var custInHour = [genRandom(a,b)];
             var cookieInHour = [Math.ceil(custInHour[i]*c)];
-            var totalCookie = cookieInHour[i];
+                 var totalCookie = cookieInHour[i];
             if ((cookieInHour[i]/20) < 2){
                 var cookieTosser = [2];
             }else{
@@ -26,6 +26,7 @@ var cookieArray = function (a,b,c) {
             totalCookie = totalCookie + cookieInHour[i];
             if ((cookieInHour[i]/20) < 2){
                 cookieTosser.push(2);
+
             }else{
                 cookieTosser.push(Math.ceil(cookieInHour[i]/20));
             }
@@ -191,6 +192,7 @@ function fillTosserRow() {
 }
 fillTosserRow();
 
+// Undo form rendering if called
 function killTables(){
     while (cookieTable.firstChild) {
         cookieTable.removeChild(cookieTable.firstChild);
@@ -206,9 +208,11 @@ function submitNewLoc(event) {
     var newMinCust = event.target.mincust.value;
     var newMaxCust = event.target.maxcust.value;
     var newAvgCookie = event.target.avgcookie.value;
-    
+    // Add new entry to constructor function
     new Loc(newName, newMinCust, newMaxCust, newAvgCookie);
+    // Remove previously rendered table
     killTables();
+    // Re-render tables with new Loc entry
     makeHeaderRowCookie();
     fillCookieRow();
     makeFooterRowCookie();
