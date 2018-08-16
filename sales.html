@@ -5,12 +5,35 @@
 <head>
     <link href="css/reset.css" type="text/css" rel="stylesheet" />
     <link href="css/style.css" type="text/css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Boogaloo|Monoton" rel="stylesheet"> 
     <meta charset = "utf-8">
     <title>Pat's Salmon Cookie Business Projector</title>
 </head>
 
 <body>
+    
+    <form id = "locadd">
+        <fieldset>
+            <legend>Add Pat's Salmon Cookie Stand Location</legend>
+
+            <label for="locname">Projected Location: </label>
+            <input name = "locname" type="text" size="40"/>
+
+            <div id="inputnumbers">
+            <label for="mincust">Estimated Minimum Hourly Customers: </label>
+            <input name="mincust" type="number" size="3"/>
+
+            <label for "maxcust">Estimated Maximum Hourly Customers: </label>
+            <input name="maxcust" type="number" size="3"/>
+
+            <label for "avgcookie">Estimated Cookies Purchased Per Customer: </label>
+            <input name="avgcookie" type="number" size="3"/>
+
+            <button type="submit">New Location</button>
+
+            </div>
+
+        </fieldset>
+    </form>
 
     <header>
 

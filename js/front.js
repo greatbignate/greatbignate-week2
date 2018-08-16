@@ -8,7 +8,8 @@ var headY = bodyY - ((bodyH+headH)/2-headH*0.33);
 var pupilSize = (headH*0.1);
 var pupilMax = (headH*0.15)-pupilSize;
 
-document.body.style.backgroundImage = "url('img/Bubba-n-Teenie.JPG')"; 
+
+//document.body.style.backgroundImage = "url('img/Bubba-n-Teenie.JPG')"; 
 
 //draw = function() {
     //left eye

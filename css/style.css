@@ -1,5 +1,9 @@
 html {
-    font-family: 'Boogaloo', cursive;
+    background: url(C:/Users/great/Projects/codefellows/201/greatbignate-week2/img/bubbantino.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size:cover;
+    -o-background-size: cover;
+    background-size: cover;
     font: white;
     text-shadow: 0px 0px 5px black;
 }
