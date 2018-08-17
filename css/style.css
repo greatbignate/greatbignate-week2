@@ -6,12 +6,11 @@ html {
     background-size: cover;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
-    text-shadow: 0px 0px 10px black;
+    text-shadow: 0px 0px 2px black;
 }
 
 #behindheader {
     height: 100px;
-    margin: 10px;
     border-bottom: 5px;
     padding: 10px;
 
@@ -22,33 +21,37 @@ header {
     text-align: center;
     position: fixed;
     background-image: url(../img/fish.jpg);
+    /* background-repeat: no-repeat; */
+    background-position-x: right 20%;
     background-size: contain;
     width: 100%;
     height: 100px;
 }
 
-h1 header {
-    text-alig
+header h1 {
+    font-size: 40px;
+    position: relative;
+    top: 25%; 
+    color: white;
 }
 
 
-#upper {
+div.upper {
     /* margin: 10px solid red;
     border: 3px solid blue;
     padding: 10px solid green; */
-    display: inline;
+    display: inline-block;
+    border: 3px solid green;
 }
 
-.about {
+#about {
     font-family: 'Times New Roman', Times, sans-serif;
-    margin: 10px solid red;
     border: 3px solid blue;
     padding: 10px solid green;
 }
 
-.stores {
+#stores {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin: 10px solid red;
     border: 3px solid blue;
     padding: 10px solid green;
 }
@@ -72,7 +75,6 @@ th {
 
 #family {
     font-style: italic;
-    margin: 10px solid red;
     border: 3px solid blue;
     padding: 10px solid green;
     background-image: url(../img/family.jpg);
@@ -82,7 +84,6 @@ th {
 #merch {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
-    margin: 10px solid red;
     border: 3px solid blue;
     padding: 10px solid green;
 }
