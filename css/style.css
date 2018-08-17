@@ -47,13 +47,11 @@ div.upper {
 #about {
     font-family: 'Times New Roman', Times, sans-serif;
     border: 3px solid blue;
-    padding: 10px solid green;
 }
 
 #stores {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border: 3px solid blue;
-    padding: 10px solid green;
 }
 
 table {
@@ -76,7 +74,6 @@ th {
 #family {
     font-style: italic;
     border: 3px solid blue;
-    padding: 10px solid green;
     background-image: url(../img/family.jpg);
     background-size: contain;
 }
@@ -85,5 +82,4 @@ th {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: bold;
     border: 3px solid blue;
-    padding: 10px solid green;
 }
