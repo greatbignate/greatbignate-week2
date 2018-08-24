@@ -220,4 +220,4 @@ function submitNewLoc(event) {
   fillTosserRow();
 }
 
-locadd.addEventListener('submit',submitNewLoc);
+addEventListener('submit',submitNewLoc);
